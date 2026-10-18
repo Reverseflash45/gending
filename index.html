@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gending — tabuh gamelan Jawa di peramban</title>
+    <meta
+      name="description"
+      content="Saron yang bisa diketuk, penyusun balungan dalam notasi kepatihan, dan struktur kolotomik lancaran, ketawang, dan ladrang yang berputar. Semua bunyi disintesis di peramban."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://gending-id.vercel.app/" />
+    <meta property="og:title" content="Gending — tabuh gamelan Jawa di peramban" />
+    <meta property="og:description" content="Ketuk saron, tulis balungan, dan dengar gong, kenong, dan kempul jatuh di tempatnya." />
+    <meta property="og:image" content="https://gending-id.vercel.app/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="https://gending-id.vercel.app/" />
+    <meta name="theme-color" content="#f6f1e7" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#15100c" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="/ikon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <header class="kepala">
+      <a class="merek" href="/">
+        <svg viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12" class="merek-gong" /><circle cx="14" cy="14" r="4.5" class="merek-pencu" /></svg>
+        Gending
+      </a>
+      <nav><a href="#susun">Susun</a><a href="#siklus">Siklus</a><a href="#laras">Laras</a><a href="#tentang">Tentang</a></nav>
+    </header>
+
+    <main>
+      <section class="pembuka" aria-labelledby="judul">
+        <p class="label">Gamelan Jawa di peramban</p>
+        <h1 id="judul">Ketuk bilahnya, dengar <em>gamelannya.</em></h1>
+        <p class="lead">
+          Saron di bawah ini bisa ditabuh dengan klik, sentuhan, atau tombol angka di papan ketik. Bunyinya tidak direkam,
+          tetapi disintesis langsung di peramban.
+        </p>
+
+        <div class="panggung">
+          <div class="pilihan" role="group" aria-label="Laras saron">
+            <button type="button" data-laras-saron="slendro" aria-pressed="true">Slendro</button>
+            <button type="button" data-laras-saron="pelog" aria-pressed="false">Pelog</button>
+          </div>
+          <div class="saron" id="saron" role="group" aria-label="Bilah saron"></div>
+          <div class="ricikan-kecil">
+            <button type="button" class="pencon" data-tabuh="kethuk"><i></i>Kethuk</button>
+            <button type="button" class="pencon" data-tabuh="kempul"><i></i>Kempul</button>
+            <button type="button" class="pencon" data-tabuh="kenong"><i></i>Kenong</button>
+            <button type="button" class="pencon gong" data-tabuh="gong"><i></i>Gong</button>
+          </div>
+          <p class="petunjuk">Tombol <kbd>1</kbd>–<kbd>7</kbd> menabuh saron, <kbd>G</kbd> menabuh gong.</p>
+        </div>
+      </section>
+
+      <section class="bagian" id="susun" aria-labelledby="judul-susun">
+        <p class="label">Susun balungan</p>
+        <h2 id="judul-susun">Tulis kerangka lagunya, <em>sisanya mengikuti</em></h2>
+        <p class="pengantar">
+          Balungan adalah kerangka lagu yang ditabuh saron dan demung, ditulis dengan angka. Pilih bentuk gendingnya, dan gong,
+          kenong, kempul, serta kethuk otomatis jatuh di tempat yang benar, sementara peking mendahului tiap nada.
+        </p>
+
+        <div class="alat">
+          <label class="kontrol">
+            <span class="label">Contoh</span>
+            <select id="contoh"></select>
+          </label>
+          <div class="kontrol">
+            <span class="label">Laras</span>
+            <div class="pilihan" role="group" aria-label="Laras">
+              <button type="button" data-laras="slendro" aria-pressed="true">Slendro</button>
+              <button type="button" data-laras="pelog" aria-pressed="false">Pelog</button>
+            </div>
+          </div>
+          <div class="kontrol">
+            <span class="label">Bentuk</span>
+            <div class="pilihan" role="group" aria-label="Bentuk gending">
+              <button type="button" data-bentuk="lancaran" aria-pressed="true">Lancaran</button>
+              <button type="button" data-bentuk="ketawang" aria-pressed="false">Ketawang</button>
+              <button type="button" data-bentuk="ladrang" aria-pressed="false">Ladrang</button>
+            </div>
+          </div>
+          <label class="kontrol tempo">
+            <span class="label">Tempo <output data-tempo></output></span>
+            <input type="range" id="tempo" min="40" max="140" step="1" />
+          </label>
+        </div>
+
+        <div class="tulis">
+          <label for="balungan" class="label">Balungan <span class="redup">· angka 1–7, titik untuk pin, ' oktaf atas, , oktaf bawah</span></label>
+          <textarea id="balungan" rows="3" spellcheck="false" autocomplete="off"></textarea>
+          <p class="galat" data-galat aria-live="polite"></p>
+        </div>
+
+        <div class="putar-baris">
+          <button type="button" class="tombol utama" id="putar" aria-pressed="false">▶ Putar</button>
+          <fieldset class="lapisan">
+            <legend class="sr-only">Ricikan yang dibunyikan</legend>
+            <label><input type="checkbox" data-lapisan="saron" checked /> Saron</label>
+            <label><input type="checkbox" data-lapisan="demung" checked /> Demung</label>
+            <label><input type="checkbox" data-lapisan="peking" checked /> Peking</label>
+            <label><input type="checkbox" data-lapisan="kolotomik" checked /> Gong, kenong, kempul, kethuk</label>
+          </fieldset>
+          <button type="button" class="tombol" id="bagikan">Salin tautan</button>
+        </div>
+
+        <div class="tampil">
+          <div class="lingkar" id="lingkar" role="img"></div>
+          <div>
+            <ul class="legenda" aria-label="Ricikan kolotomik">
+              <li><i class="t-gong"></i>G gong</li>
+              <li><i class="t-kenong"></i>N kenong</li>
+              <li><i class="t-kempul"></i>P kempul</li>
+              <li><i class="t-kethuk"></i>t kethuk</li>
+            </ul>
+            <div class="notasi" id="notasi" aria-label="Balungan per gatra"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bagian" id="siklus" aria-labelledby="judul-siklus">
+        <p class="label">Struktur kolotomik</p>
+        <h2 id="judul-siklus">Musik yang <em>berputar</em></h2>
+        <p class="pengantar">
+          Dalam gamelan, waktu tidak berjalan lurus tetapi berputar. Satu putaran disebut gongan dan ditutup pukulan gong.
+          Kenong membaginya menjadi beberapa bagian, kempul dan kethuk mengisi di antaranya. Bentuk gending menentukan panjang
+          putaran dan cara membaginya.
+        </p>
+        <div class="tiga-bentuk" data-tiga-bentuk></div>
+      </section>
+
+      <section class="bagian" id="laras" aria-labelledby="judul-laras">
+        <p class="label">Laras</p>
+        <h2 id="judul-laras">Dua tangga nada yang <em>tak ada di piano</em></h2>
+        <p class="pengantar">
+          Slendro membagi satu oktaf menjadi lima jarak yang hampir sama. Pelog punya tujuh nada dengan jarak yang tidak rata,
+          dan satu gending biasanya hanya memakai lima di antaranya. Tak satu pun cocok dengan dua belas nada piano. Ketuk
+          titiknya untuk mendengar.
+        </p>
+        <div class="grafik-laras" id="grafik-laras" role="img"></div>
+        <p class="catatan">
+          Angka di sini rata-rata kasar. Setiap perangkat gamelan punya embat, penalaan khasnya sendiri, sehingga dua gamelan
+          tidak pernah persis sama. Pelog di sini disetel tumbuk 6: nada 6 kedua laras sama tinggi.
+        </p>
+      </section>
+
+      <section class="bagian tentang" id="tentang" aria-labelledby="judul-tentang">
+        <h2 id="judul-tentang">Tentang</h2>
+        <ul>
+          <li>
+            Semua bunyi disintesis dengan Web Audio. Bilah saron, demung, dan peking memakai parsial bilah logam (1 : 2,76 :
+            5,4) dengan kembaran yang sedikit fals supaya muncul ombak; gong, kenong, dan kempul memakai frekuensi dasar yang kuat
+            dengan denyut pelan. Hasilnya mendekati, bukan meniru, gamelan sungguhan.
+          </li>
+          <li>
+            Kenong dan kempul dibunyikan dengan nada balungan di ketukan itu, dan peking menabuh nada yang dituju dua kali per
+            ketukan. Itu penyederhanaan: dalam permainan nyata garap tiap ricikan jauh lebih kaya, dan bonang, kendang, gender,
+            serta sindhen tidak disertakan.
+          </li>
+          <li>
+            Pola contoh disusun untuk latihan di sini, bukan gending tradisional. Balungan yang kamu tulis tersimpan di tautan,
+            jadi bisa dibagikan.
+          </li>
+          <li>Huruf: Plus Jakarta Sans karya Tokotype, foundry asal Indonesia; DM Serif Display; IBM Plex Mono.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="kaki">
+      <p>Dibuat oleh Rafi Fernandito · <a href="https://github.com/Reverseflash45/gending">kode sumber</a></p>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
