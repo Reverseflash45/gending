@@ -2,7 +2,7 @@
 
 ![Gending: ketuk bilahnya, dengar gamelannya](public/og.png)
 
-**[Buka Gending](https://gending-id.vercel.app)**
+**[Buka Gending](https://gending.raffstw.my.id)**
 
 Gamelan Jawa yang bisa dimainkan di peramban. Semua bunyi disintesis dengan Web Audio,
 tanpa satu pun rekaman.
