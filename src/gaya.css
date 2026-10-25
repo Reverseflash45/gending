@@ -1,51 +1,32 @@
 :root {
-  color-scheme: light;
-  --kertas: #f6f1e7;
-  --kertas-2: #eee6d6;
-  --kertas-3: #e3d8c3;
-  --tinta: #2a1d14;
-  --tinta-2: #5a4a3c;
-  --samar: #6e5f52;
-  --garis: #dcd0bb;
-  --garis-kuat: #bba98c;
-  --aksen: #8a5a12;
-  --aksen-lembut: #f1dfb8;
-  --kayu-1: #5a3420;
-  --kayu-2: #3b2216;
-  --perunggu-1: #e9c27a;
-  --perunggu-2: #b98a3e;
-  --perunggu-3: #7d5a24;
-  --sorot: #2f4fa3;
-  /* ricikan kolotomik (kategorikal, divalidasi; juga dibedakan ukuran dan huruf) */
-  --gong: #a8321c;
-  --kenong: #b98a12;
-  --kempul: #00846a;
-  --kethuk: #6a4fc0;
-  --serif: "DM Serif Display", Georgia, serif;
-  --huruf: "Plus Jakarta Sans Variable", system-ui, sans-serif;
+  /* rancakan gamelan: merah pernis, hitam kayu, emas ukiran */
+  color-scheme: dark;
+  --kertas: #1a0807;
+  --kertas-2: #26100d;
+  --kertas-3: #331612;
+  --tinta: #f6e3b8;
+  --tinta-2: #dcc69c;
+  --samar: #b59f7c;
+  --garis: #3d1d17;
+  --garis-kuat: #6b3a24;
+  --aksen: #e3b45a;
+  --aksen-lembut: #3a1f0e;
+  --pernis: #5e1210;
+  --pernis-tua: #420b09;
+  --kayu-1: #7a1a14;
+  --kayu-2: #430c09;
+  --perunggu-1: #f0cf85;
+  --perunggu-2: #c99a45;
+  --perunggu-3: #8a6224;
+  --sorot: #8fb0ff;
+  /* ricikan kolotomik (kategorikal, divalidasi di atas --kertas; juga dibedakan ukuran dan huruf) */
+  --gong: #d9669e;
+  --kenong: #c08a1c;
+  --kempul: #2c9a78;
+  --kethuk: #8a74e0;
+  --serif: "Gloock", Georgia, serif;
+  --huruf: "Figtree Variable", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --kertas: #15100c;
-    --kertas-2: #1e1712;
-    --kertas-3: #2a2019;
-    --tinta: #f1e7d6;
-    --tinta-2: #cdbfa9;
-    --samar: #a39482;
-    --garis: #33281f;
-    --garis-kuat: #4d3f31;
-    --aksen: #e0b062;
-    --aksen-lembut: #3f2f14;
-    --kayu-1: #3a2416;
-    --kayu-2: #24160e;
-    --sorot: #8fb0ff;
-    --gong: #c8402a;
-    --kenong: #b38c16;
-    --kempul: #2fa585;
-    --kethuk: #8c7ef0;
-  }
 }
 
 *,
@@ -102,6 +83,7 @@ h2 {
   font-family: var(--serif);
   font-weight: 400;
   letter-spacing: -0.01em;
+  text-wrap: balance;
 }
 h1 {
   margin: 14px 0 0;
@@ -111,6 +93,7 @@ h1 {
 }
 h1 em,
 h2 em {
+  font-style: normal;
   color: var(--aksen);
 }
 h2 {
@@ -162,7 +145,12 @@ main,
 
 /* ---------- pembuka & saron ---------- */
 .pembuka {
-  padding: clamp(36px, 6vw, 72px) 0 0;
+  /* pita merah pernis selebar layar */
+  padding: clamp(36px, 6vw, 72px) 0 clamp(36px, 5vw, 56px);
+  background: var(--pernis);
+  box-shadow: 0 0 0 100vmax var(--pernis);
+  clip-path: inset(0 -100vmax);
+  border-bottom: 4px solid var(--aksen);
 }
 .lead {
   margin: 20px 0 0;
@@ -174,7 +162,9 @@ main,
   margin-top: 34px;
   padding: clamp(18px, 3vw, 30px);
   border-radius: 22px;
-  background: radial-gradient(120% 90% at 50% 0%, var(--kertas-2), var(--kertas-3));
+  background: radial-gradient(120% 90% at 50% 0%, #2a0d0b, var(--kertas));
+  /* bingkai emas ganda seperti ukiran rancakan */
+  box-shadow: inset 0 0 0 2px var(--aksen), inset 0 0 0 6px var(--kertas), inset 0 0 0 7px rgb(227 180 90 / 0.5), 0 24px 50px -20px rgb(0 0 0 / 0.7);
 }
 .saron {
   display: flex;

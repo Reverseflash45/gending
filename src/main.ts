@@ -1,5 +1,5 @@
-import "@fontsource/dm-serif-display";
-import "@fontsource-variable/plus-jakarta-sans";
+import "@fontsource/gloock/400.css";
+import "@fontsource-variable/figtree";
 import "@fontsource/ibm-plex-mono/400.css";
 import "@fontsource/ibm-plex-mono/600.css";
 import "./gaya.css";
